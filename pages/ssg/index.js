@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
 
 // Pre-render (Static) => CSR
 
@@ -67,7 +67,8 @@ export default function Home({ description, heroID, villainID }) {
 // build time => setiap kali kita ngebuild app
 // request time => setiap kali user melakukan request halaman
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
+  // SSR
   const { query } = context;
   console.log({ query });
   // SSR
@@ -77,7 +78,7 @@ export async function getServerSideProps(context) {
   const heroID = query?.hero || 0;
   const villainID = query?.villain || 0;
 
-  console.log("ini dari server", description);
+  console.log("ini dari SSG", description);
 
   return {
     props: {
@@ -85,5 +86,6 @@ export async function getServerSideProps(context) {
       heroID,
       villainID,
     }, // will be passed to the page component as props
+    revalidate: 5,
   };
 }
