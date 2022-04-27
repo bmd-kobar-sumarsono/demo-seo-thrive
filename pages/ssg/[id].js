@@ -112,7 +112,7 @@ export async function getStaticProps(context) {
     canonicalUrl: `https://demo-seo-thrive.vercel.app/ssg/${params.id}`,
     ogTitle: requiredData.title,
     ogDescription: requiredData.description,
-    ogImageUrl: requiredData.image.url,
+    ogImageUrl: `https://demo-be-thrive.herokuapp.com${requiredData.image.url}`,
     ogImageWidth: 1200,
     ogImageHeight: 630,
     ogType: "product",
